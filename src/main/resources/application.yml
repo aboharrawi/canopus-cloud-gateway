@@ -1,2 +1,11 @@
 server:
   port: 8080
+
+#auto configuration
+canopus:
+  api:
+    gateway:
+      endpoints:
+        - id: api1
+          path: /
+          location: http://localhost:8081

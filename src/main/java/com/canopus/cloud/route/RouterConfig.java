@@ -8,11 +8,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouterConfig {
 
+    private final RouterProperties routerProperties;
+
+    public RouterConfig(RouterProperties routerProperties) {
+        this.routerProperties = routerProperties;
+    }
+
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route(p -> p.path("/")
-                        .uri("http://localhost:9000"))
-                .build();
+        RouteLocatorBuilder.Builder routes = builder.routes();
+        routerProperties.getEndpoints()
+                .forEach(endpoint -> routes.route(endpoint.getId(), predicateSpec -> predicateSpec.path(endpoint.getPath())
+                        .uri(endpoint.getLocation())));
+        return routes.build();
     }
 }
