@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 #auto configuration
 canopus:
@@ -8,4 +8,4 @@ canopus:
       endpoints:
         - id: api1
           path: /**
-          location: http://localhost:8081/
+          location: http://localhost:8082/

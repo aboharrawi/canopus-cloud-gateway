@@ -1,0 +1,26 @@
+services:
+  app:
+    image: 'canopus-cloud-gateway:0.0.1'
+    container_name: canopus-cloud-gateway
+    build: '.'
+    ports:
+      - "8081:8081"
+      - "5006:5006" #exposed for debugging
+    depends_on:
+      - canopus-keycloak
+
+  # keycloak
+  canopus-keycloak:
+    image: 'quay.io/keycloak/keycloak:21.1'
+    container_name: canopus-keycloak
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+    command:
+      - start-dev
+
+
