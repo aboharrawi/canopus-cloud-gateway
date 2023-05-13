@@ -7,5 +7,5 @@ canopus:
     gateway:
       endpoints:
         - id: api1
-          path: /
-          location: http://localhost:8081
+          path: /**
+          location: http://localhost:8081/
