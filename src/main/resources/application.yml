@@ -6,6 +6,6 @@ canopus:
   api:
     gateway:
       endpoints:
-        - id: api1
+        - id: slowApi
           path: /**
-          location: http://localhost:8082/
+          location: http://canopus-httpbin:80/

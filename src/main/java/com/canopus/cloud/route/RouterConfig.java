@@ -19,6 +19,7 @@ public class RouterConfig {
         RouteLocatorBuilder.Builder routes = builder.routes();
         routerProperties.getEndpoints()
                 .forEach(endpoint -> routes.route(endpoint.getId(), predicateSpec -> predicateSpec.path(endpoint.getPath())
+                        .filters(f -> f.circuitBreaker(config -> config.setName("delay").setFallbackUri("forward:/image/jpeg")))
                         .uri(endpoint.getLocation())));
         return routes.build();
     }
