@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 
 #auto configuration
 canopus:
@@ -8,4 +8,14 @@ canopus:
       endpoints:
         - id: slowApi
           path: /**
-          location: http://canopus-httpbin:80/
+          location: lb://canopus-delivery
+
+spring:
+  application:
+    name: canopus-cloud-gateway
+
+eureka:
+  client:
+    registerWithEureka: true
+    service-url:
+      defaultZone: http://canopus-discovery:8761/eureka
